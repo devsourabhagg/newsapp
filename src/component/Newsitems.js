@@ -1,8 +1,7 @@
-import React, { Component } from 'react'
+import React from 'react'
 
-export default class Newsitems extends Component {
-    render() {
-        let { title, descripiton, imageUrl, urlPath, author, publishedDate,source } = this.props; // this is called destructuring here this.props is an object from which respective values will be fetched
+const Newsitems = (props) =>{
+        let { title, descripiton, imageUrl, urlPath, author, publishedDate,source } = props; // this is called destructuring here this.props is an object from which respective values will be fetched
         return (
             <div className='my-3'>
                 <div className="card">
@@ -29,5 +28,6 @@ export default class Newsitems extends Component {
                 </div>
             </div>
         )
-    }
 }
+
+export default Newsitems
