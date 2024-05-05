@@ -8,7 +8,7 @@ import { useState } from 'react';
 
 const App = () => {
 
-  const [apiKey,setApiKey] = useState(process.env.REACT_APP_NEWS_API);
+  const apiKey = process.env.REACT_APP_NEWS_API;
 
   const [progress,setProgress] = useState(0);
 

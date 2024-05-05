@@ -16,7 +16,7 @@ const News = (props) =>  {
     }
 
    
-    // document.title = `${this.capitalizeFirstLetter(this.props.category)} - NewApp`
+    
 
     const updateNews = async ()=> {
         props.setProgress(10);
@@ -45,13 +45,16 @@ const News = (props) =>  {
     // }
 
     useEffect(() => {
+      document.title = `${capitalizeFirstLetter(props.category)} - NewApp`
       updateNews();
+      
+      // eslint-disable-next-line
     }, [])
     
 
     const fetchMoreData = async() => {
+        const url = `https://newsapi.org/v2/top-headlines?country=${props.country}&category=${props.category}&apiKey=${props.apiKey}&page=${page+1}&pageSize=${props.pageSize}`;
         setPage(page+1);
-        const url = `https://newsapi.org/v2/top-headlines?country=${props.country}&category=${props.category}&apiKey=${props.apiKey}&page=${page}&pageSize=${props.pageSize}`;
         setLoading(true);
         try {
             let response = await fetch(url);// Await the fetch call
@@ -71,9 +74,11 @@ const News = (props) =>  {
       };
         return (
             <div className="container my-3">
-                <h1 className="text-center"> </h1>
+                <h1 className="text-center" style={{
+                    marginTop : '90px'
+                }}> </h1>
                 <h1>NewsApp -Top {capitalizeFirstLetter(props.category)} Headlines</h1>
-                {/* {this.state.loading && <Spinner/>} */}
+                {loading && <Spinner/>}
                 <InfiniteScroll
                     dataLength={articles.length}
                     next={fetchMoreData}
